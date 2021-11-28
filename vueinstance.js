@@ -8,6 +8,8 @@ var lesson = new Vue({
         showProduct: true,
         searchValue: "",
         moreSpaces: null,
+        sortBy: 'alphabetically',
+        ascending: true,
         order: {
             firstName: "",
             lastName: "",

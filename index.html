@@ -26,10 +26,20 @@
           </button>
         </header>
 
-        <!-- Bar containing search  -->
-        <div>
+        <!-- Bar containing search and other sorts  -->
+        <div id="sort-bar">
+          <select name="sortBy" id="select" v-model="sortBy">
+            <option value="alphabetically">Sort Alphabetically</option>
+            <option value="space">Sort by Morespace</option>
+          </select>
+
+          <button v-on:click="ascending = !ascending" class="sort-button">
+            <i v-if="ascending" class="fa fa-sort-up"></i>
+            <i v-else class="fa fa-sort-down"></i>
+          </button>
+          <input type="number" v-model="moreSpaces" id="morespace-input">
           <input type="text" v-model="searchValue" placeholder="Search Lesson" id="search-input">
-          <i class="fa fa search"></i> 
+          <i class="fa fa-search"></i> 
 
         </div>
 
@@ -57,7 +67,7 @@
             All Out!
           </span>
 
-          <span v-else-if="product.space - cartCount(product.id) < 20">
+          <span v-else-if="product.space - cartCount(product.id) < 25">
             Only {{product.space - cartCount(product.id)}} left!
           </span>
 
