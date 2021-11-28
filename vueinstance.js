@@ -30,6 +30,8 @@ var lesson = new Vue({
             DE: "Delaware",
             DC: "District of Columbia",
           },
+
+          searchValue: "",
     },
 
     methods: {
@@ -62,8 +64,8 @@ var lesson = new Vue({
 
     },
 
-
     computed: {
+
           sortedProducts() {
             let productArray = this.products.slice(0);
             function compare(a, b) {
@@ -77,7 +79,30 @@ var lesson = new Vue({
               return 0;
             }
             return productArray.sort(compare);
-          },
+        },
+        
+        filterList() {
+            return this.products.filter(post => {
+                return post.title.toLowerCase().includes(this.searchValue.toLowerCase)
+            })
+        }
+
+
+
+
+    //       searchValue() {
+    //       let productArray = this.products
+    //       if (this.searchValue != '' && this.searchValue) {
+    //     productArray = productArray.filter((item) => {
+    //       return item.title
+    //         .toUpperCase()
+    //         .includes(this.searchValue.toUpperCase())
+    //     })
+    //      };
+    //    }
+
+
+       
         },
 
 

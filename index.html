@@ -26,14 +26,21 @@
           </button>
         </header>
 
-        <div v-if="showProduct">
-          <div v-for="product in sortedProducts">
+        <!-- Bar containing search  -->
+        <div>
+          <input type="text" v-model="searchValue" placeholder="Search Lesson" id="search-input">
+          <i class="fa fa search"></i> 
+        </div>
 
-            <h2 v-text="product.title"></h2>
+        <div id="product-container" v-if="showProduct">
+          <div class="card" v-for="product in sortedProducts">
 
-          <figure>
-            <img v-bind:src="product.image" />
-          </figure>
+            
+            <figure>
+              <img v-bind:src="product.image" class="product-image"/>
+            </figure>
+
+            <h2 v-text="product.title" class="product-title"></h2>
           
           <p v-html="product.description"></p>
           <p>Price: {{product.price}}</p>

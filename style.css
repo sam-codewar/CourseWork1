@@ -1,5 +1,37 @@
 body {
-    background: #A8ECE7;
+    background: #009DAE;
     padding: 20px;
     font-family: Helvetica;
+}
+
+#product-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 5px 10px;
+    margin: 10px;
+    width: 20%;
+    background-color:#A8ECE7;
+}
+
+.product-image {
+     width: 100%;
+     max-height: 200px;
+     padding: -10px -10px;
+     
+}
+
+.product-title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+#app {
+  background: #71DFE7;
+  border-radius: 4px;
+  padding: 20px;
+  transition: all 0.2s;
 }

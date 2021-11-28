@@ -3,7 +3,7 @@ let products = [
               "id": 1001,
               "title": "Javascript",
               "description":
-                "JavaScript is the world's most popular programming language for web.",
+                "JavaScript is the world's most popular" + "<br>" + "programming language for web.",
               "price": 20.00,
               "image": "./images/javascript.jpeg",
               "space": 10,
@@ -14,7 +14,8 @@ let products = [
             { 
                 "id": 1002,
               "title": "Python",
-              "description": "Python is an interpreted high-level general-purpose programming language.",
+              "description": 
+              "Python is an interpreted high-level" + "<br>" + "general-purpose programming language.",
               "price": 30.00,
               "image": "./images/python.jpeg",
               "space": 5,
@@ -25,7 +26,7 @@ let products = [
             { 
               "id": 1003, 
               "title": "HTML",
-              "description": "HTML (HyperText Markup Language) is the most basic building block of the Web",
+              "description": "HTML (HyperText Markup Language)" + "<br>" + "is the most basic building block of the Web",
               "price": 11.00,
               "image": "./images/html.jpeg",
               "space": 15,
@@ -36,7 +37,7 @@ let products = [
             { 
                 "id": 1004,
               "title": "Django",
-              "description": "Django is a Python-based free and open-source web framework that follows the model–template–views architectural pattern.",
+              "description": "Django is a Python-based free and" + "<br>" + "open-source web framework that follows the" + "<br>" + "model–template–views architectural pattern.",
               "price": 12.99,
               "image": "./images/django.jpeg",
               "space": 11,
@@ -47,7 +48,8 @@ let products = [
             { 
               "id": 1005,
               "title": "Penetration Testing",
-              "description": "A penetration test, colloquially known as a pen test or ethical hacking, is an authorized simulated cyberattack on a computer system",
+              "description": 
+              "A penetration test, colloquially known" + "<br>" + "as a pen test or ethical hacking, is an authorized" + "<br>" + "simulated cyberattack on a computer system",
               "price": 49.99,
               "image": "./images/pentest.jpeg",
               "space": 24,
@@ -59,7 +61,7 @@ let products = [
               "id": 1006,
               "title": "Java",
               "description":
-                "Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible",
+                "Java is a high-level, class-based, object-oriented" + "<br>" + "programming language that is designed to have as" + "<br>" + "few implementation dependencies as possible",
               "price": 20.00,
               "image": "./images/java.jpeg",
               "space": 10,
@@ -70,7 +72,8 @@ let products = [
             { 
               "id": 1007,
               "title": "CCNA",
-              "description": "CCNA exam covers networking fundamentals, IP services, security fundamentals, automation and programmability",
+              "description": 
+              "CCNA exam covers networking fundamentals, IP services," + "<br>" + "security fundamentals, automation and programmability",
               "price": 30.00,
               "image": "./images/ccna.jpeg",
               "space": 5,
@@ -80,9 +83,10 @@ let products = [
 
 
             { 
-              "id": 1008, 
+              "id": 1008,
               "title": "Comptia A+",
-              "description": "A comprehensive step-by-step review for A+ certification, revised for the latest exams",
+              "description": 
+              "A comprehensive step-by-step review for A+" + "<br>" + "certification, revised for the latest exams",
               "price": 11.00,
               "image": "./images/comptia-a+.jpeg",
               "space": 15,
@@ -93,7 +97,8 @@ let products = [
             { 
               "id": 1009,
               "title": "SQL",
-              "description": "SQL is a domain-specific language used in programming and designed for managing data held in a relational database management system",
+              "description": 
+              "SQL is a domain-specific language used in programming" + "<br>" + "and designed for managing data held in a relational" + "<br>" + "database management system",
               "price": 12.99,
               "image": "./images/SQL-server.jpeg",
               "space": 11,
@@ -104,7 +109,8 @@ let products = [
             { 
               "id": 1010,
               "title": "Oracle Database",
-              "description": "Oracle Database is a multi-model database management system produced and marketed by Oracle Corporation.",
+              "description": 
+              "Oracle Database is a multi-model database management" + "<br>" + "system produced and marketed by Oracle Corporation.",
               "price": 49.99,
               "image": "./images/oracledb.png",
               "space": 24,
