@@ -8,8 +8,8 @@ var lesson = new Vue({
         showProduct: true,
         searchValue: "",
         moreSpaces: null,
-        sortBy: 'alphabetically',
         ascending: true,
+        sortBy: "alphabetically",
         order: {
             firstName: "",
             lastName: "",
@@ -81,12 +81,12 @@ var lesson = new Vue({
            })
          }
       
-      // Filter out Spaces
-          if (this.moreSpaces)
-            pProduct = pProduct.filter((product) => {
-                return (product.space <= this.moreSpaces)
-            })
-           
+    //  
+        //   if (this.moreSpaces)
+        //     pProduct = pProduct.filter((product) => {
+        //         return (product.space <= this.moreSpaces)
+        //     })
+
          // Sort by alphabetical order
            pProduct = pProduct.sort((a, b) => {
             if (this.sortBy == 'alphabetically') {

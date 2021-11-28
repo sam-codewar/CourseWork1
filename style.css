@@ -35,3 +35,36 @@ body {
   padding: 20px;
   transition: all 0.2s;
 }
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#sort-bar {
+    width: 82%;
+    height: 30px;
+    margin-left: 10px;
+    background-color: #98BAE7;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.sort-button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    // height: 50px;
+    height: 100%;
+    width: 50px;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+}
+
+#select {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
