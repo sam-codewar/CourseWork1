@@ -5,19 +5,148 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <title>mdxcw1</title>
-
     <script src="products.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css">
+    <title>mdxcw1</title>
   </head>
 
   <body>
     <div id="app">
       <main>
-        <header>
+         <header>
           <h1 v-text="sitename"></h1>
+          <button @click="showCheckout">
+            {{this.cart.length}}
+            <span class="fas fa-cart-plus"></span> Checkout
+          </button>
         </header>
+
+        <div v-if="showProduct">
+          <div v-for="product in sortedProducts">
+
+            <h2 v-text="product.title"></h2>
+
+          <figure>
+            <img v-bind:src="product.image" />
+          </figure>
+          
+          <p v-html="product.description"></p>
+          <p>Price: {{product.price}}</p>
+          <p>Available Space: {{product.space}}</p>
+          <p>Location: {{product.location}}</p>
+          <button v-on:click="addToCart(product)" v-if="canAddToCart(product)">
+            Add to Cart
+          </button>
+
+          <button disabled="disabled" v-else>Add to cart</button>
+          
+          <span v-if="product.space === cartCount(product.id)">
+            All Out!
+          </span>
+
+          <span v-else-if="product.space - cartCount(product.id) < 20">
+            Only {{product.space - cartCount(product.id)}} left!
+          </span>
+
+          <span v-else=>Buy Now!</span>
+          <br>
+          <span v-for="n in product.rating">★</span>
+          <span v-for="n in 5 - product.rating">☆</span>
+            </div>
+          </div>
+
+              <!-- v-else for the showPfroduct v-if -->
+          <div v-else>
+          <h1>Checking Out</h1>
+          <p>
+            <strong>First Name:</strong>
+            <input v-model.trim="order.firstName" />
+          </p>
+
+          <p>
+            <strong>Last Name:</strong>
+            <input v-model.trim="order.lastName" />
+          </p>
+
+          <p>
+            <strong>Address:</strong>
+            <input v-model="order.address" />
+          </p>
+
+          <p>
+            <strong>City:</strong>
+            <input type="order.City" />
+          </p>
+
+          <p>
+            <strong>State: </strong>
+            <select v-model="order.state">
+              <option disabled>State</option>
+
+              <option v-for="(state, key) in States" v-bind:value="state">
+                {{key}}
+              </option>
+            </select>
+          </p>
+
+          <p>
+            <strong>Zip/Postal Code:</strong>
+            <input v-model.number="order.Zip" />
+          </p>
+
+          <p>
+            <input
+              type="checkbox"
+              id="gift"
+              value="true"
+              v-model="order.gift"
+              v-bind:true-value="order.sendGift"
+              v-bind:false-value="order.dontSendGift"
+            />
+            <label for="gift">Ship As Gift</label>
+          </p>
+
+          <p>
+            <input type="radio" id="home" value="Home" v-model="order.method" />
+            <label for="home">Home</label>
+            <input
+              type="radio"
+              id="business"
+              value="Business"
+              v-model="order.method"
+            /><label for="business">Business</label>
+          </p>
+
+          <h2>Order Information</h2>
+          <p>FirstName: {{order.firstName}}</p>
+          <p>LastName : {{order.lastName}}</p>
+          <p>Address : {{order.address}}</p>
+          <p>City : {{order.City}}</p>
+          <p>Zip : {{order.Zip}}</p>
+          <p>State : {{order.state}}</p>
+
+          <p>Sending as gift? {{order.gift}}</p>
+
+          <!-- <p v-if="order.gift">We will ship your order has gift</p> -->
+          <!-- <p v-else></p> -->
+
+          <p>Method: {{order.method}}</p>
+
+          <button @click="submitForm">Place Order</button>
+        </div>
+
+
+
+          </div>
       </main>
     </div>
+
+
 
     <script src="vueinstance.js"></script>
   </body>
