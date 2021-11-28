@@ -6,6 +6,8 @@ var lesson = new Vue({
         products: products,
         cart: [],
         showProduct: true,
+        searchValue: "",
+        moreSpaces: null,
         order: {
             firstName: "",
             lastName: "",
@@ -31,7 +33,6 @@ var lesson = new Vue({
             DC: "District of Columbia",
           },
 
-          searchValue: "",
     },
 
     methods: {
@@ -62,49 +63,71 @@ var lesson = new Vue({
           },
 
 
-    },
+    }, //end of methods
 
     computed: {
 
-          sortedProducts() {
-            let productArray = this.products.slice(0);
-            function compare(a, b) {
-              if (a.price > b.price) {
-                return 1;
-              }
-
-              if (a.price < b.price) {
-                return -1;
-              }
-              return 0;
-            }
-            return productArray.sort(compare);
-        },
-        
-        filterList() {
-            return this.products.filter(post => {
-                return post.title.toLowerCase().includes(this.searchValue.toLowerCase)
+        sortedProducts() {
+        let pProduct = this.products;
+    
+        // Process search input
+        if (this.searchValue != '' && this.searchValue) {
+            pProduct = pProduct.filter((product) => {
+            return product.title
+            .toUpperCase()
+            .includes(this.searchValue.toUpperCase())
+           })
+         }
+      
+      // Filter out Spaces
+          if (this.moreSpaces)
+            pProduct = pProduct.filter((product) => {
+                return (product.space <= this.moreSpaces)
             })
+           
+         // Sort by alphabetical order
+           pProduct = pProduct.sort((a, b) => {
+            if (this.sortBy == 'alphabetically') {
+                let fa = a.title.toLowerCase(), fb = b.title.toLowerCase()
+          
+                if (fa < fb) {
+                     return -1;
+                 }
+                if (fa > fb) {
+                    return 1;
+                 }
+                return 0;
+              
+              // Sort by cooking time
+            } else if (this.sortBy == 'space') {
+              return a.space - b.space;
+            }
+         })
+        
+        // Show sorted array in descending or ascending order
+        if (!this.ascending) {
+        	pProduct.reverse();
         }
+        
+        return pProduct;
+        }
+    }
 
+            // let productArray = this.products.slice(0);
+            // function compare(a, b) {
+            //   if (a.price > b.price) {
+            //     return 1;
+            //   }
 
+            //   if (a.price < b.price) {
+            //     return -1;
+            //   }
+            //   return 0;
+            // }
+            // return productArray.sort(compare);
+        
 
-
-    //       searchValue() {
-    //       let productArray = this.products
-    //       if (this.searchValue != '' && this.searchValue) {
-    //     productArray = productArray.filter((item) => {
-    //       return item.title
-    //         .toUpperCase()
-    //         .includes(this.searchValue.toUpperCase())
-    //     })
-    //      };
-    //    }
-
-
-       
-        },
-
+        
 
 
 
