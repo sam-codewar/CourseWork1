@@ -1,142 +1,89 @@
-var lesson = new Vue({
-    el: "#app",
-
-    data: {
-        sitename: "Professional Lesson",
-        products: products,
-        cart: [],
-        showProduct: true,
-        searchValue: "",
-        moreSpaces: null,
-        ascending: true,
-        sortBy: "alphabetically",
-        order: {
-            firstName: "",
-            lastName: "",
-            address: "",
-            City: "",
-            Zip: "",
-            gift: "",
-            state: "",
-            method: "",
-            sendGift: "Send as Gift",
-            dontSendGift: "Do not send as Gift",
-          },
-
-          States: {
-            AL: "Alabama",
-            AK: "Alaska",
-            AZ: "Arizona",
-            AR: "Arkansas",
-            CA: "California",
-            CO: "Colorado",
-            CT: "Connecticut",
-            DE: "Delaware",
-            DC: "District of Columbia",
-          },
-
+new Vue({
+  el: "#app",
+  data: {
+    products: products,
+    cart: [],
+    order: {
+      name: "",
+      number: "",
     },
-
-    methods: {
-        addToCart(product) {
-            this.cart.push(product.id);
-          }, //end function
-
-          showCheckout() {
-            this.showProduct = this.showProduct ? false : true;
-          },
-
-          submitForm() {
-            alert("Order Submited");
-          },
-
-          canAddToCart(product) {
-            return product.space > this.cartCount(product.id);
-          },
-
-          cartCount(id) {
-            let count = 0;
-            for (let i = 0; i < this.cart.length; i++) {
-              if (this.cart[i] === id) {
-                count++;
-              }
-            }
-            return count;
-          },
-
-
-    }, //end of methods
-
-    computed: {
-
-        sortedProducts() {
-        let pProduct = this.products;
-    
-        // Process search input
-        if (this.searchValue != '' && this.searchValue) {
-            pProduct = pProduct.filter((product) => {
-            return product.title
-            .toUpperCase()
-            .includes(this.searchValue.toUpperCase())
-           })
-         }
-      
-    //  
-        //   if (this.moreSpaces)
-        //     pProduct = pProduct.filter((product) => {
-        //         return (product.space <= this.moreSpaces)
-        //     })
-
-         // Sort by alphabetical order
-           pProduct = pProduct.sort((a, b) => {
-            if (this.sortBy == 'alphabetically') {
-                let fa = a.title.toLowerCase(), fb = b.title.toLowerCase()
-          
-                if (fa < fb) {
-                     return -1;
-                 }
-                if (fa > fb) {
-                    return 1;
-                 }
-                return 0;
-              
-              // Sort by cooking time
-            } else if (this.sortBy == 'space') {
-              return a.space - b.space;
-            }
-         })
-        
-        // Show sorted array in descending or ascending order
-        if (!this.ascending) {
-        	pProduct.reverse();
+    showActivity: true,
+  },
+  methods: {
+    canAddToCart(activity) {
+      return activity.spaces > this.cartCount(activity.id);
+    },
+    addToCart(activity) {
+      console.log(activity.title + " was added to the cart!");
+      this.cart.push(activity);
+      activity.spaces -= 1;
+    },
+    removeItem(activity, index) {
+      console.log("remove function started index: " + index);
+      this.cart.splice(index, 1);
+      activity.spaces += 1;
+      console.log(activity.title + " was removed from the cart!");
+    },
+    cartCount(id) {
+      let count = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        if (this.cart[i] === id) {
+          count++;
         }
-        
-        return pProduct;
+      }
+      return count;
+    },
+    showCheckout() {
+      this.showActivity = !this.showActivity;
+    },
+    checkout() {
+      alert("Order Sumbitted!");
+      this.cart = [];
+      this.order = [];
+      for (activity in activities) {
+        activity.spaces = 5;
+      }
+      this.showCheckout();
+    },
+    sortingByAttr() {
+      var attribute = document.querySelector('input[name="attribute"]:checked').value;
+      var dir = document.querySelector('input[name="direction"]:checked');
+      if (attribute != null && dir != null) {
+        console.log("The attributed being sorted: " + attribute + " Direction: " + dir.value);
+        if (dir.value == 1) {
+          this.activities.sort((a, b) => (a[attribute] < b[attribute] ? -1 : a[attribute] > b[attribute] ? 1 : 0));
         }
+        else if (dir.value == -1) {
+          this.activities.sort((a, b) => (a[attribute] > b[attribute] ? -1 : a[attribute] < b[attribute] ? 1 : 0));
+        }
+      }
+      else {
+        this.activities.sort((a, b) => (a[attribute] < b[attribute] ? -1 : a[attribute] > b[attribute] ? 1 : 0));
+      }
     }
-
-            // let productArray = this.products.slice(0);
-            // function compare(a, b) {
-            //   if (a.price > b.price) {
-            //     return 1;
-            //   }
-
-            //   if (a.price < b.price) {
-            //     return -1;
-            //   }
-            //   return 0;
-            // }
-            // return productArray.sort(compare);
-        
-
-        
-
-
-
-
-
-
-
-
-    
-})
+  },
+  computed: {
+    cartItemCount() {
+      return this.cart.length || "";
+    },
+    canViewCart() {
+      return this.cart.length > 0 ? false : true;
+    },
+    canCheckout() {
+      if (this.order.name != "") {
+        if (this.order.number != "" && this.numericName == false) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+      else if (this.numericName == true) {
+        return false;
+      }
+    },
+    numericName() {
+      return /\d/.test(this.order.name);
+    }
+  }
+});
