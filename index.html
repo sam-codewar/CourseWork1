@@ -17,7 +17,7 @@
 </head>
 <body>
 <main id="app">
-    <nav class=" navbar navbar-expand-md bg-grey navbar-dark shadow-sm sticky-top">
+    <nav class=" navbar navbar-expand-md bg-grey navbar-green shadow-sm sticky-top">
         <a class="navbar-brand pl-5" href="#"><img src="my_logo.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon mr-auto "></span></button>
@@ -59,6 +59,7 @@
                         <p class="card-text">Price : {{activity.price}}</p>
                         <p class="card-text"> Location: {{activity.location}}</p>
                         <p class="card-text"> Spaces : {{activity.spaces}}</p>
+                        <p class="card-text"> Definition : {{activity.description}}</p>
                         <div>
                             <span v-for="n in activity.rating"><i class="fas fa-star"></i></span>
                             <span v-for="n in 5-activity.rating"><i class="far fa-star"></i></span>

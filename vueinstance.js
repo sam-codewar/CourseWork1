@@ -7,6 +7,7 @@ new Vue({
       name: "",
       number: "",
     },
+    searchQuery: true,
     showActivity: true,
   },
   methods: {
@@ -51,14 +52,14 @@ new Vue({
       if (attribute != null && dir != null) {
         console.log("The attributed being sorted: " + attribute + " Direction: " + dir.value);
         if (dir.value == 1) {
-          this.activities.sort((a, b) => (a[attribute] < b[attribute] ? -1 : a[attribute] > b[attribute] ? 1 : 0));
+          this.products.sort((a, b) => (a[attribute] < b[attribute] ? -1 : a[attribute] > b[attribute] ? 1 : 0));
         }
         else if (dir.value == -1) {
-          this.activities.sort((a, b) => (a[attribute] > b[attribute] ? -1 : a[attribute] < b[attribute] ? 1 : 0));
+          this.products.sort((a, b) => (a[attribute] > b[attribute] ? -1 : a[attribute] < b[attribute] ? 1 : 0));
         }
       }
       else {
-        this.activities.sort((a, b) => (a[attribute] < b[attribute] ? -1 : a[attribute] > b[attribute] ? 1 : 0));
+        this.products.sort((a, b) => (a[attribute] < b[attribute] ? -1 : a[attribute] > b[attribute] ? 1 : 0));
       }
     }
   },
@@ -84,6 +85,18 @@ new Vue({
     },
     numericName() {
       return /\d/.test(this.order.name);
+    },
+    resultQuery() {
+      if (this.searchQuery) {
+        return this.products.filter(item => {
+          return this.searchQuery
+              .toLowerCase()
+              .split(" ")
+              .every(v => item.title.toLowerCase().includes(v));
+        });
+      } else {
+        return this.resources;
+      }
     }
   }
 });
