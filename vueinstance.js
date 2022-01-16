@@ -7,7 +7,7 @@ new Vue({
       name: "",
       number: "",
     },
-    searchQuery: true,
+    search: '',
     showActivity: true,
   },
   methods: {
@@ -41,14 +41,14 @@ new Vue({
       alert("Order Sumbitted!");
       this.cart = [];
       this.order = [];
-      for (activity in activities) {
-        activity.spaces = 5;
+      for (activity in products) {
+          activity.spaces = 5;
       }
       this.showCheckout();
     },
     sortingByAttr() {
-      var attribute = document.querySelector('input[name="attribute"]:checked').value;
-      var dir = document.querySelector('input[name="direction"]:checked');
+      let attribute = document.querySelector('input[name="attribute"]:checked').value;
+      let dir = document.querySelector('input[name="direction"]:checked');
       if (attribute != null && dir != null) {
         console.log("The attributed being sorted: " + attribute + " Direction: " + dir.value);
         if (dir.value == 1) {
@@ -86,17 +86,9 @@ new Vue({
     numericName() {
       return /\d/.test(this.order.name);
     },
-    resultQuery() {
-      if (this.searchQuery) {
-        return this.products.filter(item => {
-          return this.searchQuery
-              .toLowerCase()
-              .split(" ")
-              .every(v => item.title.toLowerCase().includes(v));
-        });
-      } else {
-        return this.resources;
-      }
-    }
-  }
+    filteredSearch() {
+        return this.products.filter(product => product.title.includes(this.search))
+    }//end filterSearch
+
+    }//end of computed
 });

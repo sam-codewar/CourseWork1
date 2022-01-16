@@ -21,6 +21,7 @@
         <a class="navbar-brand pl-5" href="#"><img src="my_logo.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon mr-auto "></span></button>
+        <input type="text" v-model="search" placeholder="search class" />
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto mr-5 ">
                 <li class="nav-item active ">
@@ -37,6 +38,7 @@
                 {{cartItemCount}}
                 <span class="fas fa-cart-plus"></span> Go To Cart
             </button>
+        </div>
     </nav>
     <h1 v-if="showActivity" class="mt-5 ml-5 text-center ">After School Lesson</h1>
     <div class="row mr-0" v-if="showActivity">
@@ -50,7 +52,7 @@
             <input name="direction" value=-1 type="radio" @click="sortingByAttr"><label>Descending</label>
         </div>
         <div class="row activities col-sm-10 ">
-            <div class="col-sm-4" v-for="activity in products">
+            <div class="col-sm-4" v-for="activity in  filteredSearch">
                 <div class=" card mt-5 ml-5 shadow-sm " style="width:300px">
                     <img class="card-img-top img-fluid " v-bind:src="activity.image" alt="Card image"
                          style="width:100%">
@@ -74,7 +76,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div v-else>
         <h1 class="text-center ml-5 mt-5 ">Welcome to your Cart</h1>
@@ -124,6 +125,8 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
 </main>
 </body>
 <script src="vueinstance.js">
