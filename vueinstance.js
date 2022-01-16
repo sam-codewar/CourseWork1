@@ -87,7 +87,7 @@ new Vue({
       return /\d/.test(this.order.name);
     },
     filteredSearch() {
-        return this.products.filter(product => product.title.includes(this.search))
+        return this.products.filter(product => product.title.toUpperCase().includes(this.search.toUpperCase()))
     }//end filterSearch
 
     }//end of computed
